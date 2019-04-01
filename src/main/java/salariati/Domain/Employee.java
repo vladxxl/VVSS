@@ -58,14 +58,6 @@ public class Employee {
         this.salary = salary;
     }
 
-    public Employee(String name, String cnp, DidacticFunction function, String salary) {
-        this.lastName = name;
-        this.firstName = name;
-        this.cnp = cnp;
-        this.function = function;
-        this.salary = Integer.parseInt(salary);
-    }
-
     /**
      * Getter for the employee last name
      */
