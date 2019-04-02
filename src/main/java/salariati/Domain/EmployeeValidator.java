@@ -12,7 +12,7 @@ public class EmployeeValidator {
         boolean isFunctionValid = employee.getFunction().equals(DidacticFunction.ASISTENT) ||
                 employee.getFunction().equals(DidacticFunction.LECTURER) ||
                 employee.getFunction().equals(DidacticFunction.TEACHER);
-        boolean isSalaryValid = employee.getSalary().toString().matches("[0-9]+") && (employee.getSalary().toString().length() > 1) && (employee.getSalary() > 0);
+        boolean isSalaryValid = employee.getSalary().toString().matches("[0-9]+") && (employee.getSalary().toString().length() > 0) && (employee.getSalary() > 0);
 
         return isLastNameValid && isFirstNameValid && isCNPValid && isFunctionValid && isSalaryValid;
     }
