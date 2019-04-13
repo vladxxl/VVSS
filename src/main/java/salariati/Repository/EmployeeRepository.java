@@ -12,10 +12,13 @@ public class EmployeeRepository implements EmployeeRepositoryInterface {
 
 	private List<Employee> employeeList;
 	private EmployeeValidator employeeValidator;
+
+	private List<String> functionList ;
 	
 	public EmployeeRepository() {
 		employeeValidator = new EmployeeValidator();
 		employeeList = new ArrayList<>();
+		functionList = new ArrayList<String>(){{add("ASISTENT");add("LECTURER");add("TEACHER");}};
 	}
 	
 	@Override
@@ -29,11 +32,20 @@ public class EmployeeRepository implements EmployeeRepositoryInterface {
 
 	@Override
 	public boolean modifyEmployee(Employee oldEmployee, String function) {
-		if (function.equals("ASISTENT") || function.equals("LECTURER") || function.equals("TEACHER")) {
-			employeeList.remove(oldEmployee);
-			Employee newEmployee = new Employee(oldEmployee.getLastName(), oldEmployee.getFirstName(), oldEmployee.getCnp(), DidacticFunction.valueOf(function), oldEmployee.getSalary());
-			employeeList.add(newEmployee);
-			return true;
+		if (employeeValidator.isValid(oldEmployee)){
+			for (String f : functionList) {
+				if (function.equals(f)) {
+					if (employeeList.contains(oldEmployee)) {
+						employeeList.remove(oldEmployee);
+
+						Employee newEmployee = new Employee(oldEmployee.getLastName(), oldEmployee.getFirstName(), oldEmployee.getCnp(), DidacticFunction.valueOf(function), oldEmployee.getSalary());
+						if (employeeValidator.isValid(newEmployee)) {
+							employeeList.add(newEmployee);
+							return true;
+						}
+					}
+				}
+			}
 		}
 		return false;
 	}
