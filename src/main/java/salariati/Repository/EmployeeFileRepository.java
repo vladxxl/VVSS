@@ -102,6 +102,14 @@ public class EmployeeFileRepository implements EmployeeRepositoryInterface {
 	}
 
 	@Override
+	public Employee getEmployeeByCNP(String CNP) {
+		for (Employee e: getEmployeeList())
+			if(e.getCnp().equals(CNP))
+				return e;
+		return null;
+	}
+
+	@Override
 	public List<Employee> getEmployeeByCriteria() {
 		List<Employee> employeeList = getEmployeeList();
         for (Employee employee : employeeList) {
